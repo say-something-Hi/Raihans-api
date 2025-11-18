@@ -1,10 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450">
-  <!-- Background with enhanced gradient -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700">
   <defs>
+    <!-- Gradients -->
     <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#4a6fa5" />
-      <stop offset="50%" stop-color="#34495e" />
-      <stop offset="100%" stop-color="#2c3e50" />
+      <stop offset="0%" stop-color="#1a2a6c" />
+      <stop offset="50%" stop-color="#2c3e50" />
+      <stop offset="100%" stop-color="#0f1c3f" />
+    </linearGradient>
+    
+    <linearGradient id="endpoint-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3498db" />
+      <stop offset="100%" stop-color="#2980b9" />
+    </linearGradient>
+    
+    <linearGradient id="service-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2ecc71" />
+      <stop offset="100%" stop-color="#27ae60" />
+    </linearGradient>
+    
+    <linearGradient id="data-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9b59b6" />
+      <stop offset="100%" stop-color="#8e44ad" />
+    </linearGradient>
+    
+    <linearGradient id="security-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e74c3c" />
+      <stop offset="100%" stop-color="#c0392b" />
     </linearGradient>
     
     <!-- Glow effects -->
@@ -13,143 +33,249 @@
       <feComposite in="SourceGraphic" in2="blur" operator="over"/>
     </filter>
     
-    <!-- Gradient for endpoints -->
-    <linearGradient id="endpoint-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3498db" />
-      <stop offset="100%" stop-color="#2980b9" />
-    </linearGradient>
+    <!-- Arrow marker -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3498db"/>
+    </marker>
   </defs>
   
-  <!-- Background rectangle -->
-  <rect width="600" height="450" fill="url(#bg-gradient)" />
+  <!-- Background -->
+  <rect width="1000" height="700" fill="url(#bg-gradient)" />
   
-  <!-- Grid pattern for background -->
-  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#34495e" stroke-width="1" opacity="0.3"/>
-  </pattern>
-  <rect width="600" height="450" fill="url(#grid)" opacity="0.2"/>
+  <!-- Title -->
+  <text x="500" y="40" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">REST API ARCHITECTURE</text>
+  <text x="500" y="65" font-family="Arial, sans-serif" font-size="14" fill="#ecf0f1" text-anchor="middle" opacity="0.8">Complete API Ecosystem with 50+ Features</text>
   
-  <!-- Main API Gateway -->
-  <rect x="250" y="175" width="100" height="60" rx="10" fill="#ffffff" opacity="0.9" filter="url(#glow)" />
-  <text x="300" y="195" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50" text-anchor="middle">API GATEWAY</text>
-  <text x="300" y="215" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50" text-anchor="middle" opacity="0.8">REST API</text>
+  <!-- ===== CLIENT LAYER ===== -->
+  <rect x="50" y="90" width="900" height="80" fill="rgba(255,255,255,0.05)" stroke="#3498db" stroke-width="1" rx="5" />
+  <text x="500" y="105" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#3498db" text-anchor="middle">CLIENT LAYER</text>
   
-  <!-- Database representation -->
-  <rect x="260" y="260" width="80" height="40" fill="#8e44ad" opacity="0.8" />
-  <rect x="255" y="265" width="90" height="10" fill="#9b59b6" opacity="0.8" />
-  <rect x="250" y="270" width="100" height="10" fill="#9b59b6" opacity="0.8" />
-  <text x="300" y="285" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">DATABASE</text>
+  <!-- Web Client -->
+  <rect x="70" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="130" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Web App</text>
+  <text x="130" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(React/Angular)</text>
   
-  <!-- Endpoint nodes with enhanced styling -->
-  <g class="endpoints">
-    <!-- GET endpoint -->
-    <circle cx="100" cy="100" r="25" fill="url(#endpoint-gradient)" filter="url(#glow)" />
-    <circle cx="100" cy="100" r="20" fill="#ffffff" opacity="0.9" />
-    <text x="100" y="105" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">GET</text>
+  <!-- Mobile Client -->
+  <rect x="210" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="270" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Mobile App</text>
+  <text x="270" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(iOS/Android)</text>
+  
+  <!-- Third-party Integration -->
+  <rect x="350" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="410" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">3rd Party</text>
+  <text x="410" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Integration</text>
+  
+  <!-- IoT Device -->
+  <rect x="490" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="550" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">IoT Device</text>
+  <text x="550" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Sensors)</text>
+  
+  <!-- Desktop Application -->
+  <rect x="630" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="690" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Desktop App</text>
+  <text x="690" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Windows/Mac)</text>
+  
+  <!-- API Testing Tool -->
+  <rect x="770" y="120" width="120" height="40" rx="5" fill="url(#endpoint-gradient)" opacity="0.9" />
+  <text x="830" y="130" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Testing Tool</text>
+  <text x="830" y="145" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Postman)</text>
+  
+  <!-- ===== SECURITY LAYER ===== -->
+  <rect x="50" y="190" width="900" height="80" fill="rgba(231, 76, 60, 0.05)" stroke="#e74c3c" stroke-width="1" rx="5" />
+  <text x="500" y="205" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#e74c3c" text-anchor="middle">SECURITY LAYER</text>
+  
+  <!-- Firewall -->
+  <rect x="100" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="150" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Firewall</text>
+  <text x="150" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">WAF</text>
+  
+  <!-- DDoS Protection -->
+  <rect x="220" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="270" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">DDoS</text>
+  <text x="270" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Protection</text>
+  
+  <!-- API Gateway -->
+  <rect x="340" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="390" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">API</text>
+  <text x="390" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Gateway</text>
+  
+  <!-- Authentication -->
+  <rect x="460" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="510" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Auth</text>
+  <text x="510" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(OAuth/JWT)</text>
+  
+  <!-- Rate Limiting -->
+  <rect x="580" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="630" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Rate</text>
+  <text x="630" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Limiting</text>
+  
+  <!-- Encryption -->
+  <rect x="700" y="220" width="100" height="40" rx="5" fill="url(#security-gradient)" opacity="0.9" />
+  <text x="750" y="235" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Encryption</text>
+  <text x="750" y="250" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">TLS/SSL</text>
+  
+  <!-- ===== APPLICATION LAYER ===== -->
+  <rect x="50" y="290" width="900" height="150" fill="rgba(46, 204, 113, 0.05)" stroke="#2ecc71" stroke-width="1" rx="5" />
+  <text x="500" y="305" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2ecc71" text-anchor="middle">APPLICATION LAYER</text>
+  
+  <!-- Load Balancer -->
+  <rect x="100" y="330" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="160" y="345" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Load</text>
+  <text x="160" y="360" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Balancer</text>
+  
+  <!-- REST API Server -->
+  <rect x="240" y="330" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="300" y="345" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">REST API</text>
+  <text x="300" y="360" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Server</text>
+  
+  <!-- Microservices -->
+  <rect x="380" y="330" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="440" y="345" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Micro-</text>
+  <text x="440" y="360" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">services</text>
+  
+  <!-- GraphQL Endpoint -->
+  <rect x="520" y="330" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="580" y="345" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">GraphQL</text>
+  <text x="580" y="360" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Endpoint</text>
+  
+  <!-- WebSocket Server -->
+  <rect x="660" y="330" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="720" y="345" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">WebSocket</text>
+  <text x="720" y="360" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Server</text>
+  
+  <!-- Business Logic -->
+  <rect x="180" y="390" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="240" y="405" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Business</text>
+  <text x="240" y="420" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Logic</text>
+  
+  <!-- Validation -->
+  <rect x="320" y="390" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="380" y="405" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Data</text>
+  <text x="380" y="420" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Validation</text>
+  
+  <!-- Caching -->
+  <rect x="460" y="390" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="520" y="405" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Caching</text>
+  <text x="520" y="420" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Redis)</text>
+  
+  <!-- Message Queue -->
+  <rect x="600" y="390" width="120" height="40" rx="5" fill="url(#service-gradient)" opacity="0.9" />
+  <text x="660" y="405" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Message</text>
+  <text x="660" y="420" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Queue</text>
+  
+  <!-- ===== DATA LAYER ===== -->
+  <rect x="50" y="460" width="900" height="120" fill="rgba(155, 89, 182, 0.05)" stroke="#9b59b6" stroke-width="1" rx="5" />
+  <text x="500" y="475" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#9b59b6" text-anchor="middle">DATA LAYER</text>
+  
+  <!-- SQL Database -->
+  <rect x="100" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="150" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">SQL DB</text>
+  <text x="150" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(PostgreSQL)</text>
+  
+  <!-- NoSQL Database -->
+  <rect x="220" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="270" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">NoSQL DB</text>
+  <text x="270" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(MongoDB)</text>
+  
+  <!-- In-Memory DB -->
+  <rect x="340" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="390" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">In-Memory</text>
+  <text x="390" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Redis)</text>
+  
+  <!-- File Storage -->
+  <rect x="460" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="510" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">File</text>
+  <text x="510" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Storage</text>
+  
+  <!-- Search Engine -->
+  <rect x="580" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="630" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Search</text>
+  <text x="630" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">(Elasticsearch)</text>
+  
+  <!-- Data Warehouse -->
+  <rect x="700" y="500" width="100" height="40" rx="5" fill="url(#data-gradient)" opacity="0.9" />
+  <text x="750" y="515" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">Data</text>
+  <text x="750" y="530" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">Warehouse</text>
+  
+  <!-- ===== MONITORING & MANAGEMENT ===== -->
+  <rect x="50" y="600" width="900" height="80" fill="rgba(241, 196, 15, 0.05)" stroke="#f1c40f" stroke-width="1" rx="5" />
+  <text x="500" y="615" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#f1c40f" text-anchor="middle">MONITORING & MANAGEMENT</text>
+  
+  <!-- Logging -->
+  <rect x="100" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="140" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Logging</text>
+  
+  <!-- Monitoring -->
+  <rect x="200" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="240" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Monitoring</text>
+  
+  <!-- Analytics -->
+  <rect x="300" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="340" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Analytics</text>
+  
+  <!-- Alerting -->
+  <rect x="400" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="440" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Alerting</text>
+  
+  <!-- Documentation -->
+  <rect x="500" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="540" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Docs</text>
+  
+  <!-- Versioning -->
+  <rect x="600" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="640" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Versioning</text>
+  
+  <!-- Testing -->
+  <rect x="700" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="740" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Testing</text>
+  
+  <!-- Deployment -->
+  <rect x="800" y="635" width="80" height="30" rx="5" fill="#f39c12" opacity="0.9" />
+  <text x="840" y="652" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">Deployment</text>
+  
+  <!-- Connection Lines -->
+  <g stroke="#3498db" stroke-width="2" opacity="0.7" marker-end="url(#arrow)">
+    <!-- Client to Security -->
+    <line x1="130" y1="160" x2="130" y2="190" />
+    <line x1="270" y1="160" x2="270" y2="190" />
+    <line x1="410" y1="160" x2="410" y2="190" />
+    <line x1="550" y1="160" x2="550" y2="190" />
+    <line x1="690" y1="160" x2="690" y2="190" />
+    <line x1="830" y1="160" x2="830" y2="190" />
     
-    <!-- POST endpoint -->
-    <circle cx="500" cy="100" r="25" fill="url(#endpoint-gradient)" filter="url(#glow)" />
-    <circle cx="500" cy="100" r="20" fill="#ffffff" opacity="0.9" />
-    <text x="500" y="105" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">POST</text>
+    <!-- Security to Application -->
+    <line x1="150" y1="260" x2="150" y2="290" />
+    <line x1="270" y1="260" x2="270" y2="290" />
+    <line x1="390" y1="260" x2="390" y2="290" />
+    <line x1="510" y1="260" x2="510" y2="290" />
+    <line x1="630" y1="260" x2="630" y2="290" />
+    <line x1="750" y1="260" x2="750" y2="290" />
     
-    <!-- PUT endpoint -->
-    <circle cx="300" cy="350" r="25" fill="url(#endpoint-gradient)" filter="url(#glow)" />
-    <circle cx="300" cy="350" r="20" fill="#ffffff" opacity="0.9" />
-    <text x="300" y="355" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">PUT</text>
+    <!-- Application to Data -->
+    <line x1="160" y1="440" x2="160" y2="460" />
+    <line x1="300" y1="440" x2="300" y2="460" />
+    <line x1="440" y1="440" x2="440" y2="460" />
+    <line x1="580" y1="440" x2="580" y2="460" />
+    <line x1="720" y1="440" x2="720" y2="460" />
     
-    <!-- DELETE endpoint -->
-    <circle cx="100" cy="350" r="25" fill="url(#endpoint-gradient)" filter="url(#glow)" />
-    <circle cx="100" cy="350" r="20" fill="#ffffff" opacity="0.9" />
-    <text x="100" y="355" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">DELETE</text>
-    
-    <!-- PATCH endpoint -->
-    <circle cx="500" cy="350" r="25" fill="url(#endpoint-gradient)" filter="url(#glow)" />
-    <circle cx="500" cy="350" r="20" fill="#ffffff" opacity="0.9" />
-    <text x="500" y="355" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">PATCH</text>
+    <!-- Data to Monitoring -->
+    <line x1="150" y1="580" x2="150" y2="600" />
+    <line x1="270" y1="580" x2="270" y2="600" />
+    <line x1="390" y1="580" x2="390" y2="600" />
+    <line x1="510" y1="580" x2="510" y2="600" />
+    <line x1="630" y1="580" x2="630" y2="600" />
+    <line x1="750" y1="580" x2="750" y2="600" />
   </g>
   
-  <!-- Connection lines with animation markers -->
-  <g class="connections">
-    <!-- Main connections to API Gateway -->
-    <line x1="100" y1="100" x2="250" y2="190" stroke="#3498db" stroke-width="2" opacity="0.7" />
-    <line x1="500" y1="100" x2="350" y2="190" stroke="#3498db" stroke-width="2" opacity="0.7" />
-    <line x1="300" y1="350" x2="300" y2="235" stroke="#3498db" stroke-width="2" opacity="0.7" />
-    <line x1="100" y1="350" x2="250" y2="235" stroke="#3498db" stroke-width="2" opacity="0.7" />
-    <line x1="500" y1="350" x2="350" y2="235" stroke="#3498db" stroke-width="2" opacity="0.7" />
-    
-    <!-- Database connections -->
-    <line x1="300" y1="260" x2="300" y2="300" stroke="#8e44ad" stroke-width="2" opacity="0.7" stroke-dasharray="5,5" />
-  </g>
+  <!-- Legend -->
+  <rect x="50" y="10" width="200" height="60" fill="rgba(255,255,255,0.1)" stroke="#ecf0f1" stroke-width="1" rx="5" />
+  <text x="60" y="30" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ecf0f1">API ARCHITECTURE LAYERS:</text>
+  <rect x="60" y="40" width="15" height="15" fill="#3498db" rx="3" />
+  <text x="80" y="52" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">Client Layer</text>
+  <rect x="60" y="55" width="15" height="15" fill="#e74c3c" rx="3" />
+  <text x="80" y="67" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1">Security Layer</text>
   
-  <!-- Data flow indicators -->
-  <circle cx="180" y="145" r="5" fill="#e74c3c">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
-  </circle>
-  <circle cx="420" y="145" r="5" fill="#2ecc71">
-    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
-  </circle>
-  
-  <!-- Enhanced status code indicators -->
-  <g class="status-codes">
-    <!-- Success codes -->
-    <rect x="50" y="130" width="70" height="25" rx="8" fill="#27ae60" opacity="0.9" />
-    <text x="85" y="146" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">200 OK</text>
-    
-    <rect x="480" y="130" width="70" height="25" rx="8" fill="#27ae60" opacity="0.9" />
-    <text x="515" y="146" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">201 Created</text>
-    
-    <!-- Client error codes -->
-    <rect x="50" y="380" width="70" height="25" rx="8" fill="#e74c3c" opacity="0.9" />
-    <text x="85" y="396" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">404</text>
-    
-    <rect x="480" y="380" width="70" height="25" rx="8" fill="#f39c12" opacity="0.9" />
-    <text x="515" y="396" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">400</text>
-    
-    <!-- Additional status code -->
-    <rect x="265" y="385" width="70" height="25" rx="8" fill="#3498db" opacity="0.9" />
-    <text x="300" y="401" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">204</text>
-  </g>
-  
-  <!-- Authentication indicator -->
-  <circle cx="300" cy="80" r="15" fill="#f39c12" opacity="0.9" />
-  <text x="300" y="84" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">AUTH</text>
-  
-  <!-- Rate limiting indicator -->
-  <rect x="280" y="45" width="40" height="20" rx="5" fill="#e74c3c" opacity="0.9" />
-  <text x="300" y="58" font-family="Arial, sans-serif" font-size="8" fill="#ffffff" text-anchor="middle">RATE</text>
-  
-  <!-- Load balancer -->
-  <rect x="150" y="40" width="100" height="30" rx="5" fill="#1abc9c" opacity="0.9" />
-  <text x="200" y="59" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">LOAD BALANCER</text>
-  
-  <!-- Microservices representation -->
-  <circle cx="400" cy="280" r="12" fill="#e67e22" opacity="0.8" />
-  <circle cx="430" cy="280" r="12" fill="#e67e22" opacity="0.8" />
-  <circle cx="460" cy="280" r="12" fill="#e67e22" opacity="0.8" />
-  <text x="430" y="285" font-family="Arial, sans-serif" font-size="6" fill="#ffffff" text-anchor="middle">MICROSERVICES</text>
-  
-  <!-- Cache layer -->
-  <rect x="150" y="280" width="100" height="30" rx="5" fill="#9b59b6" opacity="0.9" />
-  <text x="200" y="299" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">CACHE</text>
-  
-  <!-- API versioning -->
-  <text x="300" y="330" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" opacity="0.8">v1.0 | v2.0 | v3.0</text>
-  
-  <!-- Request/Response flow labels -->
-  <text x="150" y="120" font-family="Arial, sans-serif" font-size="9" fill="#ecf0f1" text-anchor="middle" opacity="0.8">Request</text>
-  <text x="450" y="120" font-family="Arial, sans-serif" font-size="9" fill="#ecf0f1" text-anchor="middle" opacity="0.8">Response</text>
-  
-  <!-- Security badge -->
-  <rect x="500" y="40" width="80" height="25" rx="12" fill="#27ae60" opacity="0.9" />
-  <text x="540" y="56" font-family="Arial, sans-serif" font-size="9" fill="#ffffff" text-anchor="middle">HTTPS</text>
-  
-  <!-- Monitoring indicator -->
-  <circle cx="550" cy="200" r="8" fill="#e74c3c">
-    <animate attributeName="r" values="8;10;8" dur="1.5s" repeatCount="indefinite" />
-  </circle>
-  <text x="550" y="215" font-family="Arial, sans-serif" font-size="8" fill="#ecf0f1" text-anchor="middle">MONITOR</text>
-  
-  <!-- Documentation link -->
-  <rect x="250" y="400" width="100" height="25" rx="5" fill="#3498db" opacity="0.9" />
-  <text x="300" y="416" font-family="Arial, sans-serif" font-size="10" fill="#ffffff" text-anchor="middle">API DOCS</text>
+  <!-- Feature Count -->
+  <text x="900" y="30" font-family="Arial, sans-serif" font-size="14" fill="#ecf0f1" text-anchor="end">50+ Features</text>
+  <text x="900" y="50" font-family="Arial, sans-serif" font-size="10" fill="#ecf0f1" text-anchor="end" opacity="0.8">Complete API Ecosystem</text>
 </svg>
