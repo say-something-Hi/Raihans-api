@@ -1,339 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced REST API Visualization</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
-        }
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #fff;
-            font-weight: 600;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .api-dashboard {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        .api-visualization {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .api-info {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .api-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .stat-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-        }
-        .stat-value {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 5px 0;
-        }
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-        .endpoint-list {
-            margin-top: 20px;
-        }
-        .endpoint {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .method {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-right: 10px;
-            min-width: 60px;
-            text-align: center;
-        }
-        .get { background: #27ae60; }
-        .post { background: #3498db; }
-        .put { background: #f39c12; }
-        .delete { background: #e74c3c; }
-        .patch { background: #9b59b6; }
-        .endpoint-path {
-            flex-grow: 1;
-            font-family: monospace;
-        }
-        .status {
-            font-size: 12px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: 10px;
-        }
-        .success { background: #2ecc71; }
-        .error { background: #e74c3c; }
-        .warning { background: #f39c12; }
-        h2 {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-        .api-description {
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .api-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .feature {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 8px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-        }
-        .feature-icon {
-            font-size: 24px;
-            margin-right: 15px;
-            width: 40px;
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Advanced REST API Ecosystem</h1>
-        
-        <div class="api-dashboard">
-            <div class="api-visualization">
-                <h2>API Architecture</h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
-                    <!-- Background with gradient -->
-                    <defs>
-                        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#1a2a6c" />
-                            <stop offset="100%" stop-color="#2c3e50" />
-                        </linearGradient>
-                        <linearGradient id="node-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#3498db" />
-                            <stop offset="100%" stop-color="#2980b9" />
-                        </linearGradient>
-                        <linearGradient id="db-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#2ecc71" />
-                            <stop offset="100%" stop-color="#27ae60" />
-                        </linearGradient>
-                        <linearGradient id="auth-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#e74c3c" />
-                            <stop offset="100%" stop-color="#c0392b" />
-                        </linearGradient>
-                        <linearGradient id="cache-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#f39c12" />
-                            <stop offset="100%" stop-color="#e67e22" />
-                        </linearGradient>
-                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
-                            <feMerge>
-                                <feMergeNode in="blur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    
-                    <!-- Background rectangle -->
-                    <rect width="800" height="500" fill="url(#bg-gradient)" />
-                    
-                    <!-- Central API Gateway -->
-                    <rect x="350" y="200" width="100" height="60" rx="10" fill="url(#node-gradient)" filter="url(#glow)" />
-                    <text x="400" y="235" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">API Gateway</text>
-                    
-                    <!-- Database -->
-                    <ellipse cx="650" cy="250" rx="60" ry="40" fill="url(#db-gradient)" />
-                    <text x="650" y="255" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Database</text>
-                    
-                    <!-- Authentication Service -->
-                    <rect x="150" y="100" width="100" height="60" rx="10" fill="url(#auth-gradient)" />
-                    <text x="200" y="135" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Auth Service</text>
-                    
-                    <!-- Cache Layer -->
-                    <rect x="150" y="350" width="100" height="60" rx="10" fill="url(#cache-gradient)" />
-                    <text x="200" y="385" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">Cache</text>
-                    
-                    <!-- Microservices -->
-                    <circle cx="550" cy="100" r="30" fill="#9b59b6" />
-                    <text x="550" y="105" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">User Service</text>
-                    
-                    <circle cx="550" cy="350" r="30" fill="#9b59b6" />
-                    <text x="550" y="355" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Order Service</text>
-                    
-                    <!-- External APIs -->
-                    <rect x="50" y="200" width="80" height="50" rx="8" fill="#34495e" />
-                    <text x="90" y="230" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Payment API</text>
-                    
-                    <!-- Connection lines -->
-                    <line x1="450" y1="230" x2="590" y2="230" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    <line x1="450" y1="230" x2="590" y2="320" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    <line x1="250" y1="130" x2="350" y2="200" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    <line x1="250" y1="380" x2="350" y2="260" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    <line x1="130" y1="225" x2="350" y2="225" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    <line x1="450" y1="230" x2="590" y2="100" stroke="#ffffff" stroke-width="3" opacity="0.7" />
-                    
-                    <!-- Data flow indicators -->
-                    <circle cx="500" cy="230" r="5" fill="#e74c3c">
-                        <animate attributeName="r" values="5;8;5" dur="1s" repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="300" cy="225" r="5" fill="#2ecc71">
-                        <animate attributeName="r" values="5;8;5" dur="1.5s" repeatCount="indefinite" />
-                    </circle>
-                    
-                    <!-- Request/Response indicators -->
-                    <text x="400" y="280" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" opacity="0.9">Request/Response Flow</text>
-                    
-                    <!-- Status indicators -->
-                    <rect x="50" y="20" width="100" height="25" rx="5" fill="#27ae60" opacity="0.9" />
-                    <text x="100" y="36" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">API Status: Online</text>
-                    
-                    <rect x="650" y="20" width="100" height="25" rx="5" fill="#3498db" opacity="0.9" />
-                    <text x="700" y="36" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Uptime: 99.9%</text>
-                </svg>
-            </div>
-            
-            <div class="api-info">
-                <h2>API Information</h2>
-                <div class="api-description">
-                    <p>This REST API provides a comprehensive set of endpoints for managing users, orders, products, and authentication in a microservices architecture.</p>
-                    <p>The API features robust security, rate limiting, caching, and comprehensive documentation with OpenAPI specification.</p>
-                </div>
-                
-                <div class="api-stats">
-                    <div class="stat-box">
-                        <div class="stat-value">42</div>
-                        <div class="stat-label">Endpoints</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value">1.2M</div>
-                        <div class="stat-label">Requests/Day</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value">98.7%</div>
-                        <div class="stat-label">Success Rate</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value">45ms</div>
-                        <div class="stat-label">Avg Response</div>
-                    </div>
-                </div>
-                
-                <h2>Key Endpoints</h2>
-                <div class="endpoint-list">
-                    <div class="endpoint">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/v1/users</span>
-                        <span class="status success">200</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method post">POST</span>
-                        <span class="endpoint-path">/api/v1/users</span>
-                        <span class="status success">201</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/v1/users/{id}</span>
-                        <span class="status success">200</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method put">PUT</span>
-                        <span class="endpoint-path">/api/v1/users/{id}</span>
-                        <span class="status success">200</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method delete">DELETE</span>
-                        <span class="endpoint-path">/api/v1/users/{id}</span>
-                        <span class="status success">204</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method post">POST</span>
-                        <span class="endpoint-path">/api/v1/auth/login</span>
-                        <span class="status success">200</span>
-                    </div>
-                    <div class="endpoint">
-                        <span class="method get">GET</span>
-                        <span class="endpoint-path">/api/v1/orders</span>
-                        <span class="status success">200</span>
-                    </div>
-                </div>
-                
-                <h2>API Features</h2>
-                <div class="api-features">
-                    <div class="feature">
-                        <div class="feature-icon">🔒</div>
-                        <div>
-                            <strong>JWT Authentication</strong>
-                            <div>Secure token-based authentication</div>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">📊</div>
-                        <div>
-                            <strong>Rate Limiting</strong>
-                            <div>1000 requests per hour per user</div>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">⚡</div>
-                        <div>
-                            <strong>Caching</strong>
-                            <div>Redis-based response caching</div>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">📝</div>
-                        <div>
-                            <strong>OpenAPI Docs</strong>
-                            <div>Interactive API documentation</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a6fa5" />
+      <stop offset="100%" stop-color="#2c3e50" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rectangle -->
+  <rect width="400" height="300" fill="url(#bg-gradient)" />
+  
+  <!-- Decorative elements representing API endpoints -->
+  <circle cx="100" cy="80" r="20" fill="#ffffff" opacity="0.8" />
+  <circle cx="300" cy="80" r="20" fill="#ffffff" opacity="0.8" />
+  <circle cx="200" cy="220" r="20" fill="#ffffff" opacity="0.8" />
+  
+  <!-- Connection lines -->
+  <line x1="100" y1="80" x2="200" y2="220" stroke="#ffffff" stroke-width="3" opacity="0.6" />
+  <line x1="300" y1="80" x2="200" y2="220" stroke="#ffffff" stroke-width="3" opacity="0.6" />
+  <line x1="100" y1="80" x2="300" y2="80" stroke="#ffffff" stroke-width="3" opacity="0.6" />
+  
+  <!-- Center REST API text -->
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffffff" text-anchor="middle">REST API</text>
+  
+  <!-- HTTP methods -->
+  <text x="80" y="85" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">GET</text>
+  <text x="320" y="85" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">POST</text>
+  <text x="200" y="225" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2c3e50" text-anchor="middle">PUT</text>
+  
+  <!-- Placeholder text -->
+  <text x="200" y="180" font-family="Arial, sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" opacity="0.9">API Placeholder</text>
+  
+  <!-- Status code indicators -->
+  <rect x="70" y="110" width="60" height="20" rx="5" fill="#27ae60" opacity="0.8" />
+  <text x="100" y="124" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">200 OK</text>
+  
+  <rect x="270" y="110" width="60" height="20" rx="5" fill="#e74c3c" opacity="0.8" />
+  <text x="300" y="124" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">404</text>
+  
+  <rect x="170" y="245" width="60" height="20" rx="5" fill="#f39c12" opacity="0.8" />
+  <text x="200" y="259" font-family="Arial, sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">201</text>
+</svg>
