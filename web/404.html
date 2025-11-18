@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 - Page Not Found | Milow API</title>
+  <meta name="description" content="404 - Page Not Found | Milow API Premium Service">
+  <link rel="shortcut icon" href="https://telegra.ph/file/278f19dd99ebc79c85140.png"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            dark: {
+              950: '#09090b',
+              900: '#101014',
+              850: '#141418',
+              800: '#18181c',
+              700: '#1f1f23',
+              600: '#27272b',
+              500: '#2e2e32',
+              400: '#39393d',
+            },
+            primary: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              300: '#c4b5fd',
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              800: '#5b21b6',
+              900: '#4c1d95',
+              950: '#2e1065',
+            },
+            accent: {
+              danger: '#ef4444',
+              cuty: '#f97316',
+              purple: '#9333ea',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif'],
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(-20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            blink: {
+              '0%, 100%': { opacity: 1 },
+              '50%': { opacity: 0 },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' }
+            },
+            dangerGlow: {
+              '0%': { boxShadow: '0 0 5px rgba(239, 68, 68, 0.5)' },
+              '100%': { boxShadow: '0 0 20px rgba(239, 68, 68, 0.8)' }
+            },
+            cutySpin: {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' }
+            }
+          },
+          animation: {
+            fadeIn: 'fadeIn 0.8s ease forwards',
+            blink: 'blink 0.7s infinite',
+            float: 'float 3s ease-in-out infinite',
+            'danger-glow': 'dangerGlow 2s ease-in-out infinite alternate',
+            'cuty-spin': 'cutySpin 3s linear infinite',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(to right, #f97316, #ec4899);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .danger-text {
+      background: linear-gradient(to right, #ef4444, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Premium Button */
+    .premium-button {
+      background: linear-gradient(to right, #f97316, #9333ea);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    }
+
+    .premium-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, #ea580c, #7c3aed);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: inherit;
+      z-index: -1;
+    }
+
+    .premium-button:hover::before {
+      opacity: 1;
+    }
+
+    .premium-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+    }
+
+    .premium-button:active {
+      transform: translateY(0);
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .animated-bg-shape {
+      position: absolute;
+      background: linear-gradient(45deg, rgba(239, 68, 68, 0.15), rgba(249, 115, 22, 0.15));
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.4;
+      animation: float 15s ease-in-out infinite;
+    }
+
+    /* Premium Badge */
+    .premium-badge {
+      background: linear-gradient(to right, #ef4444, #f97316);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+    }
+
+    /* Custom cursor for typing effect */
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      background-color: #ef4444;
+      margin-left: 2px;
+      animation: blink 0.7s infinite;
+    }
+
+    .cursor.typing {
+      animation: none;
+    }
+
+    /* Error number styling */
+    .error-number {
+      font-size: 8rem;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(to right, #ef4444, #f97316, #9333ea);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(239, 68, 68, 0.3);
+    }
+
+    @media (max-width: 640px) {
+      .error-number {
+        font-size: 6rem;
+      }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-br from-dark-950 via-dark-900 to-dark-850 text-gray-200 font-sans relative overflow-hidden">
+  <!-- Animated Background -->
+  <div class="animated-bg" aria-hidden="true">
+    <div class="animated-bg-shape" style="width: 400px; height: 400px; top: -200px; right: -100px; animation-delay: 0s;"></div>
+    <div class="animated-bg-shape" style="width: 300px; height: 300px; bottom: -150px; left: -100px; animation-delay: -5s;"></div>
+    <div class="animated-bg-shape" style="width: 200px; height: 200px; top: 30%; right: 20%; animation-delay: -10s;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 bg-dark-800/80 backdrop-blur-md border-b border-dark-600 z-50 transition-all duration-300">
+    <div class="container mx-auto px-6">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-3">
+          <div class="relative">
+            <img src="https://i.ibb.co/XYk4dXn/image.png" alt="Milow API Logo" class="w-8 h-8 cuty-spin" width="32" height="32">
+            <span class="premium-badge absolute -top-2 -right-2 text-xs">PRO</span>
+          </div>
+          <h1 class="text-xl font-semibold gradient-text font-heading">Milow API</h1>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+          <a href="/docs" class="text-gray-300 hover:text-accent-danger transition duration-300 text-sm font-medium">Documentation</a>
+          <a href="/pricing" class="text-gray-300 hover:text-accent-danger transition duration-300 text-sm font-medium">Pricing</a>
+          <a href="/contact" class="text-gray-300 hover:text-accent-danger transition duration-300 text-sm font-medium">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="text-center p-6 max-w-2xl mx-auto relative z-10">
+    <!-- Error Number -->
+    <div class="mb-2">
+      <h1 class="error-number animate-fadeIn">404</h1>
+    </div>
+
+    <!-- Animated Text -->
+    <div class="mb-8 animate-fadeIn" style="animation-delay: 0.3s;">
+      <p class="text-3xl sm:text-4xl font-heading font-bold">
+        <span class="typed-text"></span>
+        <span class="cursor inline-block w-1 h-8 bg-accent-danger ml-1 animate-blink"></span>
+      </p>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-10 animate-fadeIn" style="animation-delay: 0.6s;">
+      <p class="text-lg text-gray-400 max-w-md mx-auto">
+        The page you're looking for seems to have wandered off into the digital void. 
+        Don't worry, our premium support team is on standby to help you find your way.
+      </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fadeIn" style="animation-delay: 0.9s;">
+      <a href="/docs" class="premium-button text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out hover:opacity-90 w-full sm:w-auto text-center">
+        Back to Documentation
+      </a>
+      <a href="/" class="bg-dark-700 hover:bg-dark-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 ease-in-out border border-dark-600 hover:border-accent-danger w-full sm:w-auto text-center">
+        Go Home
+      </a>
+    </div>
+
+    <!-- Support Info -->
+    <div class="mt-12 animate-fadeIn" style="animation-delay: 1.2s;">
+      <div class="bg-dark-800/50 backdrop-blur-sm p-4 rounded-lg border border-dark-600 inline-block">
+        <p class="text-sm text-gray-400">
+          Need premium support? 
+          <a href="/contact" class="text-accent-danger hover:underline font-medium">Contact our team</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="fixed bottom-0 left-0 right-0 py-4 border-t border-dark-600 bg-dark-800/50 backdrop-blur-sm">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-2 md:mb-0">
+          <p class="text-sm text-gray-400">&copy; <span id="current-year"></span> Milow API. Premium API Service.</p>
+        </div>
+        <div>
+          <a href="https://facebook.com/lance.cochangco" target="_blank" rel="noopener noreferrer" class="danger-text hover:opacity-90 transition duration-300 text-sm font-medium">
+            Developed by AjiroDesu
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Typing effect
+    const typedTextSpan = document.querySelector(".typed-text");
+    const cursorSpan = document.querySelector(".cursor");
+    const textArray = ["Page Not Found", "Endpoint Missing", "Resource Unavailable"];
+    const typingDelay = 100;
+    const erasingDelay = 80;
+    const newTextDelay = 2000;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    function type() {
+      if (charIndex < textArray[textArrayIndex].length) {
+        if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, typingDelay);
+      } else {
+        cursorSpan.classList.remove("typing");
+        setTimeout(erase, newTextDelay);
+      }
+    }
+
+    function erase() {
+      if (charIndex > 0) {
+        if(!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, erasingDelay);
+      } else {
+        cursorSpan.classList.remove("typing");
+        textArrayIndex++;
+        if(textArrayIndex >= textArray.length) textArrayIndex = 0;
+        setTimeout(type, typingDelay + 1100);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      if(textArray.length) setTimeout(type, newTextDelay + 250);
+    });
+  </script>
+</body>
+  </html>
