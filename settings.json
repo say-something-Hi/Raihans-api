@@ -1,5 +1,5 @@
 {
-  "name": "Wataru API",
+  "name": "Milow's API",
   "version": "Wataru UI",
   "description": "Simple and Easy-to-Use API Documentation",
   "header": {
@@ -14,7 +14,7 @@
     }
   },
   "apiSettings": {
-    "operator": "AjiroDesu"
+    "operator": "RaiHan"
   },
   "links": [
     {
@@ -23,7 +23,7 @@
     },
     {
       "name": "Contact Me",
-      "url": "https://t.me/ajirodesu"
+      "url": "Facebook.com/hydrocarbon00"
     }
   ],
   "notifications": [
